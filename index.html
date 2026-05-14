@@ -1,471 +1,19 @@
 <!doctype html>
 <html lang="th">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Prince Theerawat — Portfolio</title>
   <meta name="description" content="Apple-inspired personal portfolio website for IT Development & SAP Supervisor." />
-  <style>
-    :root {
-      --bg: #f5f5f7;
-      --surface: #ffffff;
-      --surface-dark: #000000;
-      --text: #1d1d1f;
-      --muted: #6e6e73;
-      --line: rgba(0,0,0,.12);
-      --blue: #0071e3;
-      --blue-hover: #0077ed;
-      --radius-lg: 28px;
-      --radius-md: 18px;
-      --shadow: 0 18px 50px rgba(0,0,0,.08);
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans Thai", sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.5;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: saturate(180%) blur(20px);
-      background: rgba(250,250,252,.78);
-      border-bottom: 1px solid rgba(0,0,0,.08);
-    }
-
-    .nav {
-      max-width: var(--max);
-      margin: auto;
-      height: 48px;
-      padding: 0 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      font-size: 13px;
-      color: rgba(29,29,31,.82);
-    }
-
-    .brand {
-      font-weight: 700;
-      letter-spacing: -.02em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .brand-mark {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #111, #777);
-      display: inline-block;
-      box-shadow: inset 0 0 0 4px rgba(255,255,255,.2);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-    }
-
-    .nav-links a:hover { color: var(--blue); }
-
-    .menu-button {
-      display: none;
-      border: 0;
-      background: transparent;
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    .announcement {
-      background: var(--surface);
-      text-align: center;
-      padding: 13px 20px;
-      font-size: 14px;
-      color: #303033;
-    }
-
-    .announcement a { color: var(--blue); }
-
-    .hero {
-      min-height: 680px;
-      display: grid;
-      place-items: center;
-      padding: 80px 20px 50px;
-      background:
-        radial-gradient(circle at 50% 18%, rgba(0,113,227,.16), transparent 34%),
-        linear-gradient(180deg, #fff 0%, #f5f5f7 80%);
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .hero-inner { max-width: 980px; }
-
-    .eyebrow {
-      color: var(--muted);
-      font-size: clamp(16px, 2vw, 21px);
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(48px, 9vw, 112px);
-      line-height: .94;
-      letter-spacing: -.065em;
-      font-weight: 800;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #1d1d1f, #0071e3, #8e44ad, #1d1d1f);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-copy {
-      max-width: 760px;
-      margin: 24px auto 0;
-      font-size: clamp(20px, 3vw, 31px);
-      line-height: 1.18;
-      font-weight: 600;
-      letter-spacing: -.035em;
-      color: #2b2b2d;
-    }
-
-    .cta-row {
-      margin-top: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 12px 22px;
-      border-radius: 999px;
-      font-size: 17px;
-      transition: .2s ease;
-      border: 1px solid transparent;
-    }
-
-    .btn-primary {
-      background: var(--blue);
-      color: #fff;
-    }
-
-    .btn-primary:hover { background: var(--blue-hover); transform: translateY(-1px); }
-
-    .btn-secondary {
-      color: var(--blue);
-      border-color: var(--blue);
-      background: transparent;
-    }
-
-    .btn-secondary:hover { background: var(--blue); color: #fff; transform: translateY(-1px); }
-
-    .device-stage {
-      margin: 58px auto 0;
-      width: min(780px, 96vw);
-      min-height: 310px;
-      border-radius: 42px;
-      background: #111;
-      padding: 14px;
-      box-shadow: 0 35px 80px rgba(0,0,0,.2);
-      transform: perspective(1100px) rotateX(6deg);
-    }
-
-    .device-screen {
-      min-height: 282px;
-      border-radius: 30px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.9), rgba(255,255,255,.55)),
-        radial-gradient(circle at 20% 20%, rgba(0,113,227,.35), transparent 26%),
-        radial-gradient(circle at 80% 10%, rgba(142,68,173,.3), transparent 26%),
-        #f9fafc;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 18px;
-      padding: 22px;
-      text-align: left;
-    }
-
-    .mini-window,
-    .mini-card {
-      border: 1px solid rgba(0,0,0,.08);
-      background: rgba(255,255,255,.7);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.06);
-    }
-
-    .mini-window { padding: 18px; }
-    .dots { display: flex; gap: 7px; margin-bottom: 20px; }
-    .dots span { width: 10px; height: 10px; border-radius: 50%; background: #d2d2d7; }
-    .mini-line { height: 10px; border-radius: 8px; background: #dcdce1; margin: 11px 0; }
-    .mini-line.w70 { width: 70%; }
-    .mini-line.w45 { width: 45%; }
-    .mini-line.blue { width: 58%; background: rgba(0,113,227,.7); }
-
-    .mini-grid { display: grid; gap: 14px; }
-    .mini-card { padding: 17px; }
-    .mini-card strong { display: block; font-size: 28px; letter-spacing: -.05em; }
-    .mini-card span { color: var(--muted); font-size: 13px; }
-
-    section { padding: 22px; }
-
-    .section-head {
-      max-width: var(--max);
-      margin: 58px auto 22px;
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(34px, 5vw, 58px);
-      letter-spacing: -.055em;
-      line-height: 1;
-    }
-
-    .section-head p {
-      max-width: 460px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .grid {
-      max-width: var(--max);
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      border-radius: var(--radius-lg);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-      min-height: 420px;
-      padding: 34px;
-      position: relative;
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .card.dark { background: #000; color: #fff; }
-    .card.span-7 { grid-column: span 7; }
-    .card.span-5 { grid-column: span 5; }
-    .card.span-4 { grid-column: span 4; }
-    .card.span-6 { grid-column: span 6; }
-    .card.span-12 { grid-column: span 12; }
-
-    .card h3 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 48px);
-      line-height: 1.02;
-      letter-spacing: -.055em;
-    }
-
-    .card p {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 18px;
-      max-width: 520px;
-    }
-
-    .card.dark p { color: rgba(255,255,255,.72); }
-
-    .card-links {
-      margin-top: 18px;
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      color: var(--blue);
-      font-size: 17px;
-    }
-
-    .orb {
-      position: absolute;
-      right: -90px;
-      bottom: -90px;
-      width: 290px;
-      height: 290px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,113,227,.38), rgba(0,113,227,0) 68%);
-      z-index: -1;
-    }
-
-    .mock-table {
-      margin-top: 34px;
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 20px;
-      overflow: hidden;
-      background: rgba(255,255,255,.72);
-    }
-
-    .mock-row {
-      display: grid;
-      grid-template-columns: 1fr 90px;
-      gap: 16px;
-      padding: 14px 18px;
-      border-bottom: 1px solid rgba(0,0,0,.07);
-      font-size: 14px;
-    }
-
-    .mock-row:last-child { border-bottom: 0; }
-    .status { color: #0a7f3f; font-weight: 700; }
-
-    .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 26px;
-    }
-
-    .pill {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: #f5f5f7;
-      color: #333;
-      border: 1px solid rgba(0,0,0,.08);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .dark .pill { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.18); }
-
-    .timeline {
-      margin-top: 26px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 18px;
-      padding: 16px 0;
-      border-top: 1px solid rgba(0,0,0,.1);
-    }
-
-    .timeline-item:first-child { border-top: 0; }
-    .year { color: var(--muted); font-weight: 700; }
-    .timeline-item strong { display: block; font-size: 18px; }
-    .timeline-item span { color: var(--muted); }
-
-    .showcase {
-      min-height: 510px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background:
-        radial-gradient(circle at 80% 80%, rgba(0,113,227,.18), transparent 34%),
-        #fff;
-    }
-
-    .big-number {
-      font-size: clamp(82px, 12vw, 180px);
-      line-height: .78;
-      letter-spacing: -.075em;
-      font-weight: 800;
-      color: #111;
-      opacity: .9;
-    }
-
-    .contact {
-      max-width: var(--max);
-      margin: 22px auto 70px;
-      border-radius: 36px;
-      background: #fff;
-      text-align: center;
-      padding: clamp(42px, 8vw, 90px) 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .contact h2 {
-      margin: 0;
-      font-size: clamp(38px, 7vw, 78px);
-      line-height: 1;
-      letter-spacing: -.06em;
-    }
-
-    .contact p {
-      margin: 18px auto 0;
-      color: var(--muted);
-      font-size: 20px;
-      max-width: 620px;
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      color: #6e6e73;
-      font-size: 12px;
-      padding: 28px 22px 40px;
-    }
-
-    .footer-inner {
-      max-width: var(--max);
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.2fr repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    footer h4 {
-      color: #1d1d1f;
-      margin: 0 0 10px;
-      font-size: 13px;
-    }
-
-    footer a { display: block; margin: 8px 0; }
-    footer a:hover { text-decoration: underline; }
-
-    @media (max-width: 860px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        inset: 48px 0 auto 0;
-        background: rgba(250,250,252,.98);
-        padding: 22px;
-        border-bottom: 1px solid rgba(0,0,0,.08);
-      }
-
-      .nav-links.open { display: grid; gap: 18px; }
-      .menu-button { display: block; }
-      .device-screen { grid-template-columns: 1fr; }
-      .card.span-7, .card.span-5, .card.span-4, .card.span-6, .card.span-12 { grid-column: span 12; }
-      .section-head { align-items: start; flex-direction: column; }
-      .timeline-item { grid-template-columns: 1fr; gap: 4px; }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 540px) {
-      .hero { min-height: auto; padding-top: 54px; }
-      .device-stage { display: none; }
-      .card { min-height: 340px; padding: 26px; }
-      .footer-inner { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./CSS/style.css" />
 </head>
+
 <body>
   <header class="topbar">
     <nav class="nav" aria-label="Main navigation">
@@ -476,20 +24,39 @@
         <a href="#skills">ทักษะ</a>
         <a href="#experience">ประสบการณ์</a>
         <a href="#contact">ติดต่อ</a>
+        <div class="language-menu" id="languageMenu">
+          <button class="language-button" id="languageButton" type="button" aria-haspopup="true" aria-expanded="false">
+            <span class="language-flag flag-icon flag-th" id="languageFlag" aria-hidden="true"></span>
+            <span id="languageLabel">TH</span>
+            <span class="language-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="language-options" id="languageOptions" role="menu" aria-label="Choose language">
+            <button type="button" class="language-option active" data-lang="th" role="menuitem">
+              <span class="flag-icon flag-th" aria-hidden="true"></span>
+              <span>TH</span>
+            </button>
+            <button type="button" class="language-option" data-lang="en" role="menuitem">
+              <span class="flag-icon flag-us" aria-hidden="true"></span>
+              <span>EN</span>
+            </button>
+          </div>
+        </div>
       </div>
     </nav>
   </header>
 
-  <div class="announcement">
-    Portfolio แนว clean, premium, responsive — ออกแบบสำหรับ IT Development, SAP และ Business Systems. <a href="#work">ดูผลงาน ›</a>
-  </div>
+  <!-- <div class="announcement">
+    Portfolio แนว clean, premium, responsive — ออกแบบสำหรับ IT Development, SAP และ Business Systems. <a
+      href="#work">ดูผลงาน ›</a>
+  </div> -->
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
         <div class="eyebrow">IT Development & SAP Supervisor</div>
         <h1 id="hero-title"><span class="gradient-text">Build systems.</span><br>Move business.</h1>
-        <p class="hero-copy">ผมออกแบบและพัฒนาระบบที่เชื่อมโยงคน กระบวนการ และข้อมูล ให้ทำงานง่ายขึ้น เร็วขึ้น และวัดผลได้จริง</p>
+        <p class="hero-copy">ผมออกแบบและพัฒนาระบบที่เชื่อมโยงคน กระบวนการ และข้อมูล ให้ทำงานง่ายขึ้น เร็วขึ้น
+          และวัดผลได้จริง</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#work">ดูโปรเจกต์</a>
           <a class="btn btn-secondary" href="#contact">ติดต่อ</a>
@@ -529,7 +96,8 @@
         <article class="card span-7 showcase">
           <div>
             <h3>IT Connect Platform</h3>
-            <p>ระบบสื่อสารและติดตามงานระหว่าง IT กับผู้ใช้งาน รวม ticket, status, priority, dashboard และ SLA insight ในที่เดียว</p>
+            <p>ระบบสื่อสารและติดตามงานระหว่าง IT กับผู้ใช้งาน รวม ticket, status, priority, dashboard และ SLA insight
+              ในที่เดียว</p>
             <div class="card-links">
               <a href="#contact">ขอรายละเอียด ›</a>
               <a href="#skills">เทคโนโลยี ›</a>
@@ -541,7 +109,8 @@
 
         <article class="card span-5 dark">
           <h3>SAP S/4HANA Enablement</h3>
-          <p>ช่วยวิเคราะห์ process, authorization, FUE license, FI/CO issue และออกแบบแนวทาง support สำหรับ SAP S/4HANA Public Cloud</p>
+          <p>ช่วยวิเคราะห์ process, authorization, FUE license, FI/CO issue และออกแบบแนวทาง support สำหรับ SAP S/4HANA
+            Public Cloud</p>
           <div class="skill-list">
             <span class="pill">FI/CO</span>
             <span class="pill">RAP</span>
@@ -563,7 +132,8 @@
 
         <article class="card span-4">
           <h3>Excel Automation</h3>
-          <p>เครื่องมือแปลง HTML/XML/CSV เป็น Excel, ตรวจ matrix, export และทำงานแบบ local-first โดยไม่ต้องมี backend</p>
+          <p>เครื่องมือแปลง HTML/XML/CSV เป็น Excel, ตรวจ matrix, export และทำงานแบบ local-first โดยไม่ต้องมี backend
+          </p>
           <div class="skill-list">
             <span class="pill">SheetJS</span>
             <span class="pill">JavaScript</span>
@@ -630,15 +200,18 @@
           <div class="timeline">
             <div class="timeline-item">
               <div class="year">Now</div>
-              <div><strong>IT Development & SAP Supervisor</strong><span>ดูแลระบบภายใน พัฒนา workflow, dashboard, SAP support และ process improvement</span></div>
+              <div><strong>IT Development & SAP Supervisor</strong><span>ดูแลระบบภายใน พัฒนา workflow, dashboard, SAP
+                  support และ process improvement</span></div>
             </div>
             <div class="timeline-item">
               <div class="year">Before</div>
-              <div><strong>Business Intelligence / ERP Development</strong><span>สร้าง report, integration, inventory, costing และระบบสนับสนุนการทำงานหน้าร้าน/คลังสินค้า</span></div>
+              <div><strong>Business Intelligence / ERP Development</strong><span>สร้าง report, integration, inventory,
+                  costing และระบบสนับสนุนการทำงานหน้าร้าน/คลังสินค้า</span></div>
             </div>
             <div class="timeline-item">
               <div class="year">Focus</div>
-              <div><strong>Practical digital transformation</strong><span>ลดงานซ้ำ เพิ่ม visibility และเปลี่ยนข้อมูลให้เป็นการตัดสินใจที่เร็วขึ้น</span></div>
+              <div><strong>Practical digital transformation</strong><span>ลดงานซ้ำ เพิ่ม visibility
+                  และเปลี่ยนข้อมูลให้เป็นการตัดสินใจที่เร็วขึ้น</span></div>
             </div>
           </div>
         </article>
@@ -648,7 +221,8 @@
     <section id="contact">
       <div class="contact">
         <h2>Let’s build something useful.</h2>
-        <p>กำลังมองหาคนที่เข้าใจทั้งระบบ เทคโนโลยี และ business process? ติดต่อเพื่อคุยเรื่องโปรเจกต์หรือการทำงานร่วมกันได้เลย</p>
+        <p>กำลังมองหาคนที่เข้าใจทั้งระบบ เทคโนโลยี และ business process?
+          ติดต่อเพื่อคุยเรื่องโปรเจกต์หรือการทำงานร่วมกันได้เลย</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="mailto:your.email@example.com">Email me</a>
           <a class="btn btn-secondary" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -661,7 +235,8 @@
     <div class="footer-inner">
       <div>
         <h4>Prince Theerawat</h4>
-        <p>Apple-inspired portfolio concept. Replace placeholder email, LinkedIn, metrics and project details with real information before publishing.</p>
+        <p>Apple-inspired portfolio concept. Replace placeholder email, LinkedIn, metrics and project details with real
+          information before publishing.</p>
       </div>
       <div>
         <h4>Explore</h4>
@@ -683,21 +258,7 @@
     </div>
   </footer>
 
-  <script>
-    const menuButton = document.getElementById('menuButton');
-    const navLinks = document.getElementById('navLinks');
-
-    menuButton.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      menuButton.textContent = navLinks.classList.contains('open') ? '×' : '☰';
-    });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        menuButton.textContent = '☰';
-      });
-    });
-  </script>
+  <script src="./JS/script.js"></script>
 </body>
+
 </html>
